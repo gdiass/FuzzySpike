@@ -10,22 +10,9 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            string[] perguntas = {
-            "É brinquedo de 'menino'?",
-            "É de brincar em grupo?",
-            "É para brincar ao ar livre?",
-            "Pode molhar?"
-        };
-
-            string[] candidatos = { "Baralho", "Bola", "Boneca", "Pelúcia", "Quebra-cabeça" };
-
-            // Matriz [Linhas = Perguntas, Colunas = Candidatos]
-            double[,] matrizFuzzy = new double[,] {
-            { 0.50, 1.00, 0.00, 0.25, 0.50 }, // Q0
-            { 1.00, 0.75, 0.50, 0.50, 0.25 }, // Q1
-            { 0.25, 1.00, 0.50, 0.00, 0.00 }, // Q2
-            { 0.00, 1.00, 0.75, 0.00, 0.00 }  // Q3
-        };
+            string[] perguntas, candidatos;
+            double[,] matrizFuzzy;
+            PreencherTabelas(out perguntas, out candidatos, out matrizFuzzy);
 
             int totalCandidatos = candidatos.Length;
             double[] probCandidatos = new double[totalCandidatos];
@@ -69,6 +56,45 @@ namespace ConsoleApp1
             Console.WriteLine($"\n !!!!!!!! O resultado é !!!!!!!!!!!!!!");
             Console.WriteLine($"\n {resultado}");
 
+            inputUsuario = Console.ReadLine();
+        }
+
+        private static void PreencherTabelas(out string[] perguntas, out string[] candidatos, out double[,] matrizFuzzy)
+        {
+            perguntas = new[] {
+                "É brinquedo de 'menino'?",
+                "É de brincar em grupo?",
+                "É para brincar ao ar livre?",
+                "Pode molhar?"
+            };
+            candidatos = new [] { "Baralho", "Bola", "Boneca", "Pelúcia", "Quebra-cabeça" };
+
+            // Matriz [Linhas = Perguntas, Colunas = Candidatos]
+            matrizFuzzy = new double[,] {
+                { 0.50, 1.00, 0.00, 0.25, 0.50 }, // Q0
+                { 1.00, 0.75, 0.50, 0.50, 0.25 }, // Q1
+                { 0.25, 1.00, 0.50, 0.00, 0.00 }, // Q2
+                { 0.00, 1.00, 0.75, 0.00, 0.00 }  // Q3
+            };
+        }
+
+        private static void PreencherTabelas2(out string[] perguntas, out string[] candidatos, out double[,] matrizFuzzy)
+        {
+            perguntas = new[] {
+                "É brinquedo de 'menino'?",
+                "É de brincar em grupo?",
+                "É para brincar ao ar livre?",
+                "Pode molhar?"
+            };
+            candidatos = new[] { "Baralho", "Bola", "Boneca", "Pelúcia", "Quebra-cabeça" };
+
+            // Matriz [Linhas = Perguntas, Colunas = Candidatos]
+            matrizFuzzy = new double[,] {
+                { 0.50, 1.00, 0.00, 0.25, 0.50 }, // Q0
+                { 1.00, 0.75, 0.50, 0.50, 0.25 }, // Q1
+                { 0.25, 1.00, 0.50, 0.00, 0.00 }, // Q2
+                { 0.00, 1.00, 0.75, 0.00, 0.00 }  // Q3
+            };
         }
 
         private static void NextQuestion(string[] perguntas, string[] candidatos, double[,] matrizFuzzy, int totalCandidatos, double[] probCandidatos, HashSet<int> perguntasFeitas, out int proximaPergunta, out string inputUsuario, out double respostaUsuario)
